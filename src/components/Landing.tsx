@@ -351,7 +351,7 @@ export default function () {
                       placeholder={"Insert an address per line: \n0xabc...\n0xdef..."}
                       className="w-full p-3 rounded-md bg-[#2b2b4f] border border-gray-600 text-white"
                     />
-                    <div className="flex gap-2">
+                    <div className="flex gap-2 mt-2">
                       <input
                         type="file"
                         accept=".txt"

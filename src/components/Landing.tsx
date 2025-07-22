@@ -1,8 +1,20 @@
 import { useState } from 'react';
-import { Upload, Calendar, Users, Coins, ArrowRight, CheckCircle, AlertCircle, Zap, Shield, TrendingUp } from 'lucide-react';
 import { useWalletClient } from "wagmi"
 import { ethers } from "ethers"
 import { ConnectButton } from '@rainbow-me/rainbowkit';
+import {
+    Upload,
+    Calendar,
+    Users,
+    Coins,
+    ArrowRight,
+    CheckCircle,
+    AlertCircle,
+    Zap,
+    Shield,
+    TrendingUp,
+    Clock
+} from 'lucide-react';
 
 import type { IVestingForm } from "vesting-manager";
 import { VestingManager } from "../../node_modules/vesting-manager/src/index.ts";
@@ -12,7 +24,8 @@ import LandingBackground from "./LandingBackground"
 const features = [
     { icon: Shield, title: "Secure & Trustless", desc: "Smart contract based vesting with no intermediaries" },
     { icon: Zap, title: "Instant Setup", desc: "Deploy your vesting schedule in under 2 minutes" },
-    { icon: TrendingUp, title: "Flexible Terms", desc: "Custom release schedules for any use case" }
+    { icon: TrendingUp, title: "Flexible Terms", desc: "Custom release schedules for any use case" },
+    { icon: Clock, title: "Automatic Distribution", desc: "Your beneficiaries will receive tokens on schedule without you have to worry about it" }
 ];
 
 export default function () {
@@ -458,7 +471,7 @@ export default function () {
             </div>
 
             {/* Bottom Features */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-16">
               {features.map((feature, index) => (
                 <div key={index} className="group p-6 bg-gray-800/20 backdrop-blur-sm border border-gray-700/30 rounded-2xl hover:bg-gray-800/30 hover:border-gray-600/50 transition-all duration-300">
                   <div className="w-12 h-12 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">

@@ -226,9 +226,6 @@ export default function () {
                               className="w-full h-14 px-4 bg-gray-800/50 border border-gray-700/50 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-blue-500/50 focus:ring-2 focus:ring-blue-500/20 transition-all duration-200"
                               placeholder="1000000"
                             />
-                            <div className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm">
-                              tokens
-                            </div>
                           </div>
                         </div>
                       </div>
@@ -295,28 +292,25 @@ export default function () {
                               className="w-full h-14 px-4 bg-gray-800/50 border border-gray-700/50 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-purple-500/50 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200"
                               placeholder="1440"
                             />
-                            <div className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm">
-                              min
-                            </div>
                           </div>
                           <div className="flex gap-2 mt-2">
                             <button
                               onClick={() => setFormData({ ...formData, cycleDuration: 1440 })}
                               className="px-3 py-1 text-xs bg-gray-700/50 text-gray-300 rounded-lg hover:bg-gray-600/50 transition-colors"
                             >
-                              Daily (1440)
+                              Daily
                             </button>
                             <button
                               onClick={() => setFormData({ ...formData, cycleDuration: 10080 })}
                               className="px-3 py-1 text-xs bg-gray-700/50 text-gray-300 rounded-lg hover:bg-gray-600/50 transition-colors"
                             >
-                              Weekly (10080)
+                              Weekly
                             </button>
                             <button
                               onClick={() => setFormData({ ...formData, cycleDuration: 43200 })}
                               className="px-3 py-1 text-xs bg-gray-700/50 text-gray-300 rounded-lg hover:bg-gray-600/50 transition-colors"
                             >
-                              Monthly (43200)
+                              Monthly
                             </button>
                           </div>
                         </div>
@@ -335,7 +329,7 @@ export default function () {
                           <h2 className="text-2xl font-bold text-white">
                             Beneficiaries
                           </h2>
-                          <p className="text-gray-400 text-sm">Add wallet addresses and allocations</p>
+                          <p className="text-gray-400 text-sm">Add wallet addresses</p>
                         </div>
                       </div>
 
@@ -430,7 +424,7 @@ export default function () {
                       <p className="text-sm text-gray-400">
                         {isFormValid 
                           ? "All fields are completed. Deploy your vesting schedule now."
-                          : "Please complete all required fields and ensure allocations total 100%"
+                          : "Please complete all required fields"
                         }
                       </p>
                     </div>

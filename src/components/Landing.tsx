@@ -27,6 +27,7 @@ export default function () {
     cycleDuration: 0
   });
 
+  // @ts-ignore
   const [beneficiaries, setBeneficiaries] = useState([
     { name: '', address: '', percentage: '' }
   ]);
@@ -36,23 +37,11 @@ export default function () {
   const totalPercentage = beneficiaries.reduce((sum, b) => sum + (parseFloat(b.percentage) || 0), 0);
   const isFormValid = formData.token && formData.amount > 0 && formData.startTime && formData.endTime && formData.cycleDuration && formData.beneficiaries
   
-
-  const handleChange = (e) => {
+  const handleChange = (e:any) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleBeneficiaryChange = (index, field, value) => {
-    const updatedBeneficiaries = [...beneficiaries];
-    updatedBeneficiaries[index][field] = value;
-    setBeneficiaries(updatedBeneficiaries);
-
-    // Add new empty beneficiary if current one is being filled
-    if (value && index === beneficiaries.length - 1) {
-      setBeneficiaries([...updatedBeneficiaries, { name: '', address: '', percentage: '' }]);
-    }
-  };
-
-  const handleCsvUpload = (e) => {
+  const handleCsvUpload = (e: any) => {
     console.log("file uploaded")
     const file = e.target.files[0];
     if (!file) {

@@ -247,7 +247,7 @@ export default function () {
 
                   {/* Right Column - Beneficiaries */}
                     {/* Schedule Section */}
-                    <div className="group mt-6">
+                    <div className="group">
                       <div className="flex items-center gap-3 mb-6">
                         <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg shadow-purple-500/25">
                           <Calendar className="w-6 h-6 text-white" />
@@ -329,7 +329,7 @@ export default function () {
                     </div>
                 </div>
 
-                <div className="space-y-8">
+                <div className="space-y-8 mt-6">
                   <div className="group">
                     <div className="flex items-center justify-between mb-6">
                       <div className="flex items-center gap-3">
@@ -350,6 +350,7 @@ export default function () {
                     {/* Beneficiaries List */}
                     {/* <LandingBeneficiaries/> */}
                     <textarea
+                      onFocus={() => setCurrentStep(2)}
                       name="beneficiaries"
                       rows={4}
                       onChange={handleChange}
@@ -373,10 +374,9 @@ export default function () {
                       </label>
                     </div>
 
-
                     {/* Allocation Summary */}
-                    {totalPercentage > 0 && (
-                      <div className="mt-6">
+                    {isFormValid && (
+                      <div className="mt-6 mb-6">
                         <div className={`p-4 rounded-2xl border transition-all duration-300 ${
                           totalPercentage === 100 
                             ? 'bg-green-500/10 border-green-500/30 shadow-lg shadow-green-500/10' 
@@ -411,7 +411,7 @@ export default function () {
                               style={{ width: `${Math.min(totalPercentage, 100)}%` }}
                             ></div>
                           </div>
-                          
+
                           {totalPercentage !== 100 && (
                             <p className="text-sm text-gray-300">
                               {totalPercentage > 100 ? (

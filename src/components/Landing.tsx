@@ -154,7 +154,7 @@ export default function () {
               
               <div className="relative bg-gray-800/30 backdrop-blur-xl border border-gray-700/50 rounded-3xl p-8 md:p-12">
                 {/* Progress Indicator */}
-                <div className="flex justify-between items-center mb-12">
+                <div className="hidden sm:flex justify-between items-center mb-12">
                   <div className="flex items-center gap-4">
                     {[
                       { icon: Coins, label: 'Token Details' },

@@ -61,20 +61,18 @@ export default function () {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleCsvUpload = (e: any) => {
+  const handleTxtUpload = (e: any) => {
     console.log("file uploaded")
     const file = e.target.files[0];
-    if (!file) {
-      console.log('no file')
-      return
-    }
     const reader = new FileReader();
     reader.onload = (event) => {
       const content = event.target?.result;
-      // setFormData({ ...formData, beneficiaries: String(content)! });
-      // const content = { target: { beneficiaries }}
-      setFormData({ ...formData, beneficiaries: String(content) });
+      // WARNING: if not trim() when uploading file create an additional beneficiary
+      setFormData({ ...formData, beneficiaries: String(content).trim() }); 
     };
+    reader.onerror = () => {
+        alert('failed to read file')
+    }
     reader.readAsText(file);
   };
 
@@ -354,6 +352,7 @@ export default function () {
                       onFocus={() => setCurrentStep(2)}
                       name="beneficiaries"
                       rows={4}
+                      value={formData.beneficiaries}
                       onChange={handleChange}
                       placeholder={"Insert an address per line: \n0xabc...\n0xdef..."}
                       className="w-full p-3 rounded-md bg-[#2b2b4f] border border-gray-600 text-white"
@@ -362,7 +361,7 @@ export default function () {
                       <input
                         type="file"
                         accept=".txt"
-                        onChange={handleCsvUpload}
+                        onChange={handleTxtUpload}
                         className="hidden"
                         id="csv-upload"
                       />

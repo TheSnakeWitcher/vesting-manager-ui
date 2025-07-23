@@ -16,9 +16,7 @@ import {
     Clock
 } from 'lucide-react';
 
-import type { IVestingForm } from "vesting-manager";
-import { VestingManager } from "../../node_modules/vesting-manager/src/index.ts";
-
+import { VestingManager, type IVestingForm } from "@thesnakewitcher/vesting-manager";
 import LandingBackground from "./LandingBackground"
 
 const features = [

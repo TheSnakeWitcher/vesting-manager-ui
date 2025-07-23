@@ -17,6 +17,9 @@ importers:
       '@tanstack/react-query':
         specifier: ^5.83.0
         version: 5.83.0(react@19.1.0)
+      '@thesnakewitcher/vesting-manager':
+        specifier: ^0.1.0
+        version: 0.1.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       ethers:
         specifier: ^6.15.0
         version: 6.15.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)
@@ -32,9 +35,6 @@ importers:
       tailwindcss:
         specifier: ^4.1.11
         version: 4.1.11
-      vesting-manager:
-        specifier: link:../vesting-manager
-        version: link:../vesting-manager
       viem:
         specifier: ^2.33.0
         version: 2.33.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.22.4)
@@ -585,6 +585,9 @@ packages:
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
 
+  '@openzeppelin/contracts@5.4.0':
+    resolution: {integrity: sha512-eCYgWnLg6WO+X52I16TZt8uEjbtdkgLC0SUX/xnAksjjrQI4Xfn4iBRoI5j55dmlOhDv1Y7BoR3cU7e3WWhC6A==}
+
   '@paulmillr/qr@0.2.1':
     resolution: {integrity: sha512-IHnV6A+zxU7XwmKFinmYjUcwlyK9+xkG3/s9KcQhI9BjQKycrJ1JRO+FbNYPwZiPKW3je/DR0k7w8/gLa5eaxQ==}
     deprecated: 'The package is now available as "qr": npm install qr'
@@ -865,6 +868,12 @@ packages:
     resolution: {integrity: sha512-/XGYhZ3foc5H0VM2jLSD/NyBRIOK4q9kfeml4+0x2DlL6xVuAcVEW+hTlTapAmejObg0i3eNqhkr2dT+eciwoQ==}
     peerDependencies:
       react: ^18 || ^19
+
+  '@thesnakewitcher/contracts-fees@0.1.1':
+    resolution: {integrity: sha512-p1TysKqsSEtm9g7YIBun7wEIFUj1kux/7mVEHcCLHWV0DDR3dSd/s+pRIaT3TJp17PHKe5UWlMEbPWjS2bfjYg==}
+
+  '@thesnakewitcher/vesting-manager@0.1.0':
+    resolution: {integrity: sha512-39eqjZ4D0a+51HYJD+JdPJtAQtuGKMDHZtEF9snlRVNBX3jorZhaZ1Nd4yFMRs0kv1aO9tCm8b4ZAyipXkuxyQ==}
 
   '@types/babel__core@7.20.5':
     resolution: {integrity: sha512-qoQprZvz5wQFJwMDqeseRXWv3rqMvhgpbXFfVyWhbx9X47POIA6i/+dXefEmZKoAgOaTdaIgNSMqMIU61yRyzA==}
@@ -3417,6 +3426,8 @@ snapshots:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.19.1
 
+  '@openzeppelin/contracts@5.4.0': {}
+
   '@paulmillr/qr@0.2.1': {}
 
   '@rainbow-me/rainbowkit@2.2.8(@tanstack/react-query@5.83.0(react@19.1.0))(@types/react@19.1.8)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(typescript@5.8.3)(viem@2.33.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.22.4))(wagmi@2.16.0(@tanstack/query-core@5.83.0)(@tanstack/react-query@5.83.0(react@19.1.0))(@types/react@19.1.8)(bufferutil@4.0.9)(react@19.1.0)(typescript@5.8.3)(utf-8-validate@5.0.10)(viem@2.33.0(bufferutil@4.0.9)(typescript@5.8.3)(utf-8-validate@5.0.10)(zod@3.22.4))(zod@3.22.4))':
@@ -3882,6 +3893,19 @@ snapshots:
     dependencies:
       '@tanstack/query-core': 5.83.0
       react: 19.1.0
+
+  '@thesnakewitcher/contracts-fees@0.1.1':
+    dependencies:
+      '@openzeppelin/contracts': 5.4.0
+
+  '@thesnakewitcher/vesting-manager@0.1.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)':
+    dependencies:
+      '@openzeppelin/contracts': 5.4.0
+      '@thesnakewitcher/contracts-fees': 0.1.1
+      ethers: 6.15.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)
+    transitivePeerDependencies:
+      - bufferutil
+      - utf-8-validate
 
   '@types/babel__core@7.20.5':
     dependencies:

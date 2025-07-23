@@ -247,7 +247,7 @@ export default function () {
 
                   {/* Right Column - Beneficiaries */}
                     {/* Schedule Section */}
-                    <div className="group">
+                    <div className="group mt-6">
                       <div className="flex items-center gap-3 mb-6">
                         <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg shadow-purple-500/25">
                           <Calendar className="w-6 h-6 text-white" />

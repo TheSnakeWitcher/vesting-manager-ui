@@ -15,8 +15,8 @@ import {
     TrendingUp,
     Clock
 } from 'lucide-react';
-
 import { VestingManager, type IVestingForm } from "@thesnakewitcher/vesting-manager";
+
 import LandingBackground from "./LandingBackground"
 
 const features = [
@@ -37,6 +37,14 @@ export default function () {
     beneficiaries: '',
     cycleDuration: 0
   });
+  const submitData = {
+    ...formData,
+    amount: Number(formData.amount),
+    cycleDuration: formData.cycleDuration * 60,
+    startTime: new Date(formData.startTime).getTime() / 1000,
+    endTime: new Date(formData.endTime).getTime() /1000,
+    beneficiaries: formData.beneficiaries.split('\n'),
+  } as IVestingForm
 
   // @ts-ignore
   const [beneficiaries, setBeneficiaries] = useState([
@@ -47,6 +55,7 @@ export default function () {
   const [currentStep, setCurrentStep] = useState(0);
   const totalPercentage = beneficiaries.reduce((sum, b) => sum + (parseFloat(b.percentage) || 0), 0);
   const isFormValid = formData.token && formData.amount > 0 && formData.startTime && formData.endTime && formData.cycleDuration && formData.beneficiaries
+  const beneficiaryCount = submitData.beneficiaries.length
   
   const handleChange = (e:any) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -72,23 +81,15 @@ export default function () {
   const handleSubmit = async () => {
     setIsSubmitting(true);
 
-    console.log(formData)
-    const submissionData = {
-        ...formData,
-        amount: Number(formData.amount),
-        cycleDuration: formData.cycleDuration * 60,
-        startTime: new Date(formData.startTime).getTime() / 1000,
-        endTime: new Date(formData.endTime).getTime() /1000,
-        beneficiaries: formData.beneficiaries.split('\n'),
-    } as IVestingForm ;
-    console.log(submissionData)
+    console.log("form data:\n ", formData)
+    console.log("submit data:\n ", submitData)
 
     if (!walletClient) return ;
     const runner = await new ethers.BrowserProvider(walletClient.transport).getSigner();
     const chainId = walletClient.chain.id
 
     const vm = new VestingManager(chainId, runner)
-    const tx = await vm.create(submissionData)
+    const tx = await vm.create(submitData)
     console.log(tx)
     
     setIsSubmitting(false);
@@ -393,32 +394,14 @@ export default function () {
                               )}
                               <span className="font-semibold text-white">Total Allocation</span>
                             </div>
-                            <span className={`text-2xl font-bold ${
-                              totalPercentage === 100 ? 'text-green-400' : 
-                              totalPercentage > 100 ? 'text-red-400' : 'text-yellow-400'
-                            }`}>
-                              {totalPercentage.toFixed(1)}%
-                            </span>
                           </div>
                           
-                          {/* Progress Bar */}
-                          <div className="h-2 bg-gray-700/50 rounded-full overflow-hidden mb-2">
-                            <div 
-                              className={`h-full transition-all duration-500 ${
-                                totalPercentage === 100 ? 'bg-green-400' : 
-                                totalPercentage > 100 ? 'bg-red-400' : 'bg-yellow-400'
-                              }`}
-                              style={{ width: `${Math.min(totalPercentage, 100)}%` }}
-                            ></div>
-                          </div>
-
                           {totalPercentage !== 100 && (
                             <p className="text-sm text-gray-300">
-                              {totalPercentage > 100 ? (
-                                `Over-allocated by ${(totalPercentage - 100).toFixed(1)}%`
-                              ) : (
-                                `${(100 - totalPercentage).toFixed(1)}% remaining to allocate`
-                              )}
+                                Starting at  <strong> { `${new Date(formData.startTime)}` } </strong> during cycles of 
+                                <strong> { formData.cycleDuration } </strong> minutes duration each release
+                                <strong> { `${ (formData.amount / Math.round( (submitData.endTime - submitData.startTime) / submitData.cycleDuration)) / beneficiaryCount}` } </strong>
+                                tokens to { `${beneficiaryCount == 1 ? "the" : "each" }` } beneficiary
                             </p>
                           )}
                         </div>

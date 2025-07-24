@@ -43,7 +43,7 @@ export default function () {
     cycleDuration: formData.cycleDuration * 60,
     startTime: new Date(formData.startTime).getTime() / 1000,
     endTime: new Date(formData.endTime).getTime() /1000,
-    beneficiaries: formData.beneficiaries.split('\n'),
+    beneficiaries: formData.beneficiaries.trim().split('\n'),
   } as IVestingForm
 
   // @ts-ignore

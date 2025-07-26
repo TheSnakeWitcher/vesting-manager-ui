@@ -18,6 +18,7 @@ import {
 import { VestingManager, type IVestingForm } from "@thesnakewitcher/vesting-manager";
 
 import LandingBackground from "./LandingBackground"
+import MadeWithLove from './MadeWithLove';
 
 const features = [
     { icon: Shield, title: "Secure & Trustless", desc: "Smart contract based vesting with no intermediaries" },
@@ -82,7 +83,10 @@ export default function () {
     console.log("form data:\n ", formData)
     console.log("submit data:\n ", submitData)
 
-    if (!walletClient) return ;
+    if (!walletClient) {
+        setIsSubmitting(false);
+        throw new Error('Wallet not connected');
+    } ;
     const runner = await new ethers.BrowserProvider(walletClient.transport).getSigner();
     const chainId = walletClient.chain.id
 
@@ -118,12 +122,8 @@ export default function () {
         <section className="pt-16 pb-20">
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
             {/* Header */}
+            <MadeWithLove/>
             <div className="text-center pb-16">
-              <div className="inline-flex items-center gap-2 bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-full px-3 py-1 text-sm text-gray-300 mb-8">
-                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                Powered by Smart Contracts
-              </div>
-              
               <h1 className="text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 mb-6">
                 Token Vesting
                 <br />

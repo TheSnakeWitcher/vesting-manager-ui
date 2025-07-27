@@ -1,7 +1,7 @@
 {
   "name": "vesting-manager-ui",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -9,7 +9,7 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "pnpm build",
-    "deploy": "pnpm gh-pages -d dist"
+    "deploy": "pnpm gh-pages -d dist --cname vesting.cooltech.quest"
   },
   "dependencies": {
     "@rainbow-me/rainbowkit": "^2.2.8",

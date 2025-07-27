@@ -19,6 +19,7 @@ import { VestingManager, type IVestingForm } from "@thesnakewitcher/vesting-mana
 
 import LandingBackground from "./LandingBackground"
 import MadeWithLove from './MadeWithLove';
+import FAQs from "./FAQs"
 
 const features = [
     { icon: Shield, title: "Secure & Trustless", desc: "Smart contract based vesting with no intermediaries" },
@@ -462,6 +463,9 @@ export default function () {
                 </div>
               ))}
             </div>
+
+            <FAQs/>
+
           </div>
         </section>
       </div>

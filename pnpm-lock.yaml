@@ -18,8 +18,8 @@ importers:
         specifier: ^5.83.0
         version: 5.83.0(react@19.1.0)
       '@thesnakewitcher/vesting-manager':
-        specifier: ^0.1.1
-        version: 0.1.1(bufferutil@4.0.9)(utf-8-validate@5.0.10)
+        specifier: ^0.1.2
+        version: 0.1.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       ethers:
         specifier: ^6.15.0
         version: 6.15.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)
@@ -872,8 +872,8 @@ packages:
   '@thesnakewitcher/contracts-fees@0.1.1':
     resolution: {integrity: sha512-p1TysKqsSEtm9g7YIBun7wEIFUj1kux/7mVEHcCLHWV0DDR3dSd/s+pRIaT3TJp17PHKe5UWlMEbPWjS2bfjYg==}
 
-  '@thesnakewitcher/vesting-manager@0.1.1':
-    resolution: {integrity: sha512-BrzVYJUyAGt6PAlpEsk9x3rTSCuiyFZkUngFqNDGs56+X8Z7TxIXjkNadYgU4ZQba3fTp5JAoArVTlf4T1sS7A==}
+  '@thesnakewitcher/vesting-manager@0.1.2':
+    resolution: {integrity: sha512-vcX6OUYkKUFfyqnI50XkD3orx8YpRI1dOfZebCba3JDZ7b2OAVO1ltEgsdT/E7yHl1U6PPfssmllAd98atDh2g==}
 
   '@types/babel__core@7.20.5':
     resolution: {integrity: sha512-qoQprZvz5wQFJwMDqeseRXWv3rqMvhgpbXFfVyWhbx9X47POIA6i/+dXefEmZKoAgOaTdaIgNSMqMIU61yRyzA==}
@@ -2186,8 +2186,8 @@ packages:
   preact@10.24.2:
     resolution: {integrity: sha512-1cSoF0aCC8uaARATfrlz4VCBqE8LwZwRfLgkxJOQwAlQt6ayTmi0D9OF7nXid1POI5SZidFuG9CnlXbDfLqY/Q==}
 
-  preact@10.26.9:
-    resolution: {integrity: sha512-SSjF9vcnF27mJK1XyFMNJzFd5u3pQiATFqoaDy03XuN00u4ziveVVEGt5RKJrDR8MHE/wJo9Nnad56RLzS2RMA==}
+  preact@10.27.0:
+    resolution: {integrity: sha512-/DTYoB6mwwgPytiqQTh/7SFRL98ZdiD8Sk8zIUVOxtwq4oWcwrcd1uno9fE/zZmUaUrFNYzbH14CPebOz9tZQw==}
 
   prelude-ls@1.2.1:
     resolution: {integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==}
@@ -3010,7 +3010,7 @@ snapshots:
       eth-json-rpc-filters: 6.0.1
       eventemitter3: 5.0.1
       keccak: 3.0.4
-      preact: 10.26.9
+      preact: 10.27.0
       sha.js: 2.4.12
     transitivePeerDependencies:
       - supports-color
@@ -3898,7 +3898,7 @@ snapshots:
     dependencies:
       '@openzeppelin/contracts': 5.4.0
 
-  '@thesnakewitcher/vesting-manager@0.1.1(bufferutil@4.0.9)(utf-8-validate@5.0.10)':
+  '@thesnakewitcher/vesting-manager@0.1.2(bufferutil@4.0.9)(utf-8-validate@5.0.10)':
     dependencies:
       '@openzeppelin/contracts': 5.4.0
       '@thesnakewitcher/contracts-fees': 0.1.1
@@ -5730,7 +5730,7 @@ snapshots:
 
   preact@10.24.2: {}
 
-  preact@10.26.9: {}
+  preact@10.27.0: {}
 
   prelude-ls@1.2.1: {}
 

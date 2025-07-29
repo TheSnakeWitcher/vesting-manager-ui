@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { useWalletClient } from "wagmi"
+import { useWalletClient, useAccount } from "wagmi"
+import { bscTestnet } from "viem/chains"
 import { ethers } from "ethers"
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 import {
@@ -19,6 +20,7 @@ import { VestingManager, type IVestingForm } from "@thesnakewitcher/vesting-mana
 
 import LandingBackground from "./LandingBackground"
 import MadeWithLove from './MadeWithLove';
+import TestnetWarning from "./TestnetWarning"
 import FAQs from "./FAQs"
 
 const features = [
@@ -30,6 +32,7 @@ const features = [
 
 export default function () {
   const { data: walletClient } = useWalletClient();
+  const { address } = useAccount();
 
   const [formData, setFormData] = useState({
     token: '',
@@ -376,6 +379,7 @@ export default function () {
                     </div>
 
                     {/* Allocation Summary */}
+                    {walletClient?.chain.id == bscTestnet.id && <TestnetWarning chainId={bscTestnet.id} address={address!}/>}
                     {isFormValid && (
                       <div className="mt-6 mb-6">
                         <div className={`p-4 rounded-2xl border transition-all duration-300 ${

@@ -407,7 +407,8 @@ export default function () {
                           
                           {totalPercentage !== 100 && (
                             <p className="text-sm text-gray-300">
-                                Starting at  <strong> { `${new Date(formData.startTime)}` } </strong> during cycles of 
+                                Starting at  <strong> { `${new Date(formData.startTime)}` } </strong> during 
+                                <strong> { Math.round( (submitData.endTime - submitData.startTime) / submitData.cycleDuration) } </strong> cycles of 
                                 <strong> { formData.cycleDuration } </strong> minutes duration each release
                                 <strong> { `${ (formData.amount / Math.round( (submitData.endTime - submitData.startTime) / submitData.cycleDuration)) / beneficiaryCount}` } </strong>
                                 tokens to { `${beneficiaryCount == 1 ? "the" : "each" }` } beneficiary

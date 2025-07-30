@@ -16,6 +16,7 @@ import {
     TrendingUp,
     Clock
 } from 'lucide-react';
+import { ToastContainer, toast } from "react-toastify";
 import { VestingManager, type IVestingForm } from "@thesnakewitcher/vesting-manager";
 
 import LandingBackground from "./LandingBackground"
@@ -82,22 +83,23 @@ export default function () {
   };
 
   const handleSubmit = async () => {
+    if (!walletClient) {
+        toast.error("error with wallet connection")
+        return
+    } ;
     setIsSubmitting(true);
 
     console.log("form data:\n ", formData)
     console.log("submit data:\n ", submitData)
 
-    if (!walletClient) {
-        setIsSubmitting(false);
-        throw new Error('Wallet not connected');
-    } ;
     const runner = await new ethers.BrowserProvider(walletClient.transport).getSigner();
     const chainId = walletClient.chain.id
 
     const vm = new VestingManager(chainId, runner)
     const tx = await vm.create(submitData)
+
     console.log(tx)
-    
+    toast.success("vesting created successfully")
     setIsSubmitting(false);
   };
 
@@ -126,6 +128,7 @@ export default function () {
         <section className="pt-16 pb-20">
           <div className="max-w-6xl mx-auto px-4 sm:px-6">
             {/* Header */}
+            <ToastContainer position="top-right" autoClose={5000} closeOnClick={true} theme="dark"/>
             <MadeWithLove/>
             <div className="text-center pb-16">
               <h1 className="text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 mb-6">

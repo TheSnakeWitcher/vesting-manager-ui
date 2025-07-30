@@ -103,6 +103,8 @@ export default function () {
     setIsSubmitting(false);
   };
 
+  const handleFaucetRequest = () =>  {toast.success("Your test tokens are on its way")}
+
   return (
     <div className="min-h-screen bg-gray-900 relative overflow-hidden">
        <LandingBackground/>
@@ -382,7 +384,7 @@ export default function () {
                     </div>
 
                     {/* Allocation Summary */}
-                    {walletClient?.chain.id == bscTestnet.id && <TestnetWarning chainId={bscTestnet.id} address={address!}/>}
+                    {walletClient?.chain.id == bscTestnet.id && <TestnetWarning chainId={bscTestnet.id} address={address!} notifiationFn={handleFaucetRequest}/>}
                     {isFormValid && (
                       <div className="mt-6 mb-6">
                         <div className={`p-4 rounded-2xl border transition-all duration-300 ${

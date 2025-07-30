@@ -1,13 +1,19 @@
 import { AlertTriangle, Droplets, ExternalLink } from 'lucide-react';
 
 export default function (
-    {address, chainId}: {chainId: number ,address: string}
+    {address, chainId, notifiationFn}: {chainId: number ,address: string, notifiationFn: () => void }
 ) {
 
   const handleFaucet = () => {
     const body = JSON.stringify({ chainId, user: address })
     console.log(body)
-    fetch("https://opsljrtyq0.execute-api.us-east-2.amazonaws.com/faucet", { body, method: "POST" })
+    try {
+        fetch("https://opsljrtyq0.execute-api.us-east-2.amazonaws.com/faucet", { body, method: "POST" })
+    } catch(err) {
+        console.log(err)
+    } finally {
+        notifiationFn()
+    }
   }
 
   return (

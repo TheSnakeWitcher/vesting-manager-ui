@@ -35,6 +35,7 @@ export default function () {
   const { data: walletClient } = useWalletClient();
   const { address } = useAccount();
 
+  const [cycleDuration, setCycleDuration] = useState({ unit: 60, name: 'Minutes'})
   const [formData, setFormData] = useState({
     token: '',
     amount: 0,
@@ -46,9 +47,9 @@ export default function () {
   const submitData = {
     ...formData,
     amount: Number(formData.amount),
-    cycleDuration: formData.cycleDuration * 60,
-    startTime: new Date(formData.startTime).getTime() / 1000,
-    endTime: new Date(formData.endTime).getTime() /1000,
+    cycleDuration: Number(formData.cycleDuration) * cycleDuration.unit,
+    startTime: new Date(formData.startTime).getTime() / 1000, // ms to s
+    endTime: new Date(formData.endTime).getTime() /1000,      // ms to s
     beneficiaries: formData.beneficiaries.trim().split('\n'),
   } as IVestingForm
 
@@ -60,9 +61,12 @@ export default function () {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const totalPercentage = beneficiaries.reduce((sum, b) => sum + (parseFloat(b.percentage) || 0), 0);
-  const isFormValid = formData.token && formData.amount > 0 && formData.startTime && formData.endTime && formData.cycleDuration && formData.beneficiaries
+  const isFormValid = formData.token && formData.amount > 0 &&
+                      formData.endTime > formData.startTime &&
+                      formData.cycleDuration > 0 &&
+                      formData.beneficiaries
   const beneficiaryCount = submitData.beneficiaries.length
-  
+
   const handleChange = (e:any) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -298,40 +302,41 @@ export default function () {
                         </div>
 
                         <div className="space-y-2">
-                          <label className="block text-sm font-semibold text-gray-200">
-                            Release Frequency (minutes)
-                          </label>
-                          <div className="relative">
-                            <input
-                              type="number"
-                              name="cycleDuration"
-                              value={formData.cycleDuration}
-                              onChange={handleChange}
-                              onFocus={() => setCurrentStep(1)}
-                              className="w-full h-14 px-4 bg-gray-800/50 border border-gray-700/50 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-purple-500/50 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200"
-                              placeholder="1440"
-                            />
+
+                        <div className="grid grid-cols-2 gap-4">
+                          <div className="space-y-2">
+                            <label className="block text-sm font-semibold text-gray-200">
+                              Release Frequency
+                            </label>
+                              <input
+                                type="number"
+                                name="cycleDuration"
+                                value={formData.cycleDuration}
+                                onChange={handleChange}
+                                onFocus={() => setCurrentStep(1)}
+                                className="w-full h-14 px-4 bg-gray-800/50 border border-gray-700/50 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:border-purple-500/50 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200"
+                                placeholder="1440"
+                              />
                           </div>
-                          <div className="flex gap-2 mt-2">
-                            <button
-                              onClick={() => setFormData({ ...formData, cycleDuration: 1440 })}
-                              className="px-3 py-1 text-xs bg-gray-700/50 text-gray-300 rounded-lg hover:bg-gray-600/50 transition-colors"
+                          <div className="space-y-2">
+                            <label className="invisible block text-sm font-semibold text-gray-200">
+                              Release Unit
+                            </label>
+                            <select
+                                value={cycleDuration.unit}
+                                onChange={ (e) => setCycleDuration({
+                                    unit: Number(e.target.value),
+                                    name: e.target.options[e.target.selectedIndex].text }
+                                )}
+                                className="w-full h-14 px-4 bg-gray-800/50 border border-gray-700/50 rounded-2xl text-white focus:outline-none focus:border-purple-500/50 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200"
                             >
-                              Daily
-                            </button>
-                            <button
-                              onClick={() => setFormData({ ...formData, cycleDuration: 10080 })}
-                              className="px-3 py-1 text-xs bg-gray-700/50 text-gray-300 rounded-lg hover:bg-gray-600/50 transition-colors"
-                            >
-                              Weekly
-                            </button>
-                            <button
-                              onClick={() => setFormData({ ...formData, cycleDuration: 43200 })}
-                              className="px-3 py-1 text-xs bg-gray-700/50 text-gray-300 rounded-lg hover:bg-gray-600/50 transition-colors"
-                            >
-                              Monthly
-                            </button>
+                                <option value="60"> Minutes </option>
+                                <option value="3600"> Hours </option>
+                                <option value="86400"> Days </option>
+                                <option value="604800"> Weeks </option>
+                            </select>
                           </div>
+                        </div>
                         </div>
                       </div>
                     </div>
@@ -409,7 +414,7 @@ export default function () {
                             <p className="text-sm text-gray-300">
                                 Starting at  <strong> { `${new Date(formData.startTime)}` } </strong> during 
                                 <strong> { Math.round( (submitData.endTime - submitData.startTime) / submitData.cycleDuration) } </strong> cycles of 
-                                <strong> { formData.cycleDuration } </strong> minutes duration each release
+                                <strong> { formData.cycleDuration } </strong> {cycleDuration.name} duration each release
                                 <strong> { `${ (formData.amount / Math.round( (submitData.endTime - submitData.startTime) / submitData.cycleDuration)) / beneficiaryCount}` } </strong>
                                 tokens to { `${beneficiaryCount == 1 ? "the" : "each" }` } beneficiary
                             </p>

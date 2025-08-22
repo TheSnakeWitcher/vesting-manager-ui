@@ -18,8 +18,8 @@ importers:
         specifier: ^5.83.0
         version: 5.83.0(react@19.1.0)
       '@thesnakewitcher/vesting-manager':
-        specifier: ^0.1.3
-        version: 0.1.3(bufferutil@4.0.9)(utf-8-validate@5.0.10)
+        specifier: ^0.1.4
+        version: 0.1.4(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       ethers:
         specifier: ^6.15.0
         version: 6.15.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)
@@ -875,8 +875,8 @@ packages:
   '@thesnakewitcher/contracts-fees@0.1.1':
     resolution: {integrity: sha512-p1TysKqsSEtm9g7YIBun7wEIFUj1kux/7mVEHcCLHWV0DDR3dSd/s+pRIaT3TJp17PHKe5UWlMEbPWjS2bfjYg==}
 
-  '@thesnakewitcher/vesting-manager@0.1.3':
-    resolution: {integrity: sha512-LJA7NoLayaDNy77Y2iILMz4RUHylQiKMh/4QJjbTdHu5hQ1Cav1+gK8ALmEdWdf21XTSP+oknLohZQll+Wu83g==}
+  '@thesnakewitcher/vesting-manager@0.1.4':
+    resolution: {integrity: sha512-PYi3bBzzAr9WKDdBm4dBbc9O683Sz/jRaaoCtXaNqF4kMXd1ahPjhNsl1gjpuSQBiR4QYNA27XdFaFYNBuXHew==}
 
   '@types/babel__core@7.20.5':
     resolution: {integrity: sha512-qoQprZvz5wQFJwMDqeseRXWv3rqMvhgpbXFfVyWhbx9X47POIA6i/+dXefEmZKoAgOaTdaIgNSMqMIU61yRyzA==}
@@ -3907,7 +3907,7 @@ snapshots:
     dependencies:
       '@openzeppelin/contracts': 5.4.0
 
-  '@thesnakewitcher/vesting-manager@0.1.3(bufferutil@4.0.9)(utf-8-validate@5.0.10)':
+  '@thesnakewitcher/vesting-manager@0.1.4(bufferutil@4.0.9)(utf-8-validate@5.0.10)':
     dependencies:
       '@openzeppelin/contracts': 5.4.0
       '@thesnakewitcher/contracts-fees': 0.1.1
